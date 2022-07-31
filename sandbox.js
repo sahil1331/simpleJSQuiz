@@ -1,5 +1,7 @@
 const correctAnswers=['B','D','A','D','A'];
 const form=document.querySelector('.quiz-form');
+const result=document.querySelector('.result');
+const percentage=document.querySelector('span')
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -14,4 +16,21 @@ form.addEventListener('submit',(e)=>{
         }
     });
     console.log(score);
-})
+    scrollTo(0,0)
+    result.classList.remove('d-none');
+    
+
+    let output=0;
+    const timer=setInterval(()=>{
+        percentage.textContent=`${score}%`;
+        if(output === score){
+            clearInterval(timer);
+        }
+        else{
+
+            output++;
+            percentage.textContent=`${score}%`;
+        }
+
+    },10);
+});
